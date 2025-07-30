@@ -8,17 +8,30 @@ aliases:
   - /storage/containerd/
 ---
 
-{{< summary-bar feature_name="containerd" >}}
+Starting with Docker Engine v29, Docker uses [`containerd`](https://containerd.io/)
+for managing container storage and images. `containerd` is the industry-standard container runtime.
 
-containerd, the industry-standard container runtime, uses snapshotters instead
-of the classic storage drivers for storing image and container data.
-While the `overlay2` driver still remains the default driver for Docker Engine,
-you can opt in to using containerd snapshotters as an experimental feature.
+## Main benefits
 
-To learn more about the containerd image store and its benefits, refer to
+containerd offers the following benefits:
+
+- Shared maintenance: containerd is an open-source project maintained by a large community.
+- Customizability: use [snapshotters](snapshotters.md)
+  with unique characteristics, such as:
+  - [stargz](https://github.com/containerd/stargz-snapshotter) for lazy-pulling images on container
+  startup.
+  - [nydus](https://github.com/containerd/nydus-snapshotter) or [dragonfly](https://github.com/dragonflyoss/nydus) for peer-to-peer image distribution.
+- Portability: containerd is lighter and more modular.
+- Multi-platform support: Build multi-platform images and images with attestations.
+- WebAssembly: Ability to run Wasm containers.
+
+For more information about the containerd image store and its benefits, refer to
 [containerd image store on Docker Desktop](/manuals/desktop/features/containerd.md).
 
-## Enable containerd image store on Docker Engine
+## Migrate to containerd image store on Docker Engine
+
+When you update to Docker Engine v29 and enable the containrd feature, you are automatically migrated.
+This is a non-breaking migration with support for backward compatibility.
 
 Switching to containerd snapshotters causes you to temporarily lose images and
 containers created using the classic storage drivers.
@@ -33,7 +46,7 @@ The following steps explain how to enable the containerd snapshotters feature.
    ```json
    {
      "features": {
-       "containerd-snapshotter": true
+       "containerd-snapshotter": false
      }
    }
    ```
