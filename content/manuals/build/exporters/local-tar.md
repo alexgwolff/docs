@@ -28,8 +28,10 @@ The following table describes the available parameters:
 | Parameter        | Type    | Default | Description                                                                       |
 | ---------------- | ------- | ------- | --------------------------------------------------------------------------------- |
 | `dest`           | String  |         | Path to copy files to                                                             |
-| `src`            | String  |         | Directory in the build result to export. Requires BuildKit v0.34.0 or later.      |
+| `src`            | String  |         | Directory in the build result to export                                           |
 | `platform-split` | Boolean | `true`  | `local` exporter only. Split multi-platform outputs into platform subdirectories. |
+
+BuildKit version 0.34.0 and later supports the `src` parameter.
 
 ## Multi-platform builds with local exporter
 
